@@ -10,8 +10,9 @@ REPO_RELEASE=$(curl --silent "https://api.github.com/repos/$GITHUB_REPO/releases
 
 # Download the release from GitHub and install it in /usr/local/bin
 rm -f $DOWNLOAD_PATH
-curl -L https://github.com/$GITHUB_REPO/releases/download/$REPO_RELEASE/$TARGET-$(uname -s | tr '[:upper:]' '[:lower:]')-$(uname -m | sed s/x86_64/amd64/) > $DOWNLOAD_PATH
+PKG_URL=https://github.com/$GITHUB_REPO/releases/download/$REPO_RELEASE/$TARGET-$(echo $REPO_RELEASE | cut -c 2-)-$(uname -s | tr '[:upper:]' '[:lower:]')-$(uname -m | sed s/x86_64/amd64/)
+curl -L $PKG_URL > $DOWNLOAD_PATH
 sudo install $DOWNLOAD_PATH $DEST_PATH
 
 whereis $TARGET
-$TARGET --version
+$TARGET -v
