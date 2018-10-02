@@ -4,3 +4,6 @@
 
     wget -O - https://raw.githubusercontent.com/shah/docker-utils/master/setup-docker-machine.sh | bash
 
+## Install ctop on Linux using bash
+
+    wget -O - https://raw.githubusercontent.com/shah/docker-utils/master/setup-ctop.sh | bash
